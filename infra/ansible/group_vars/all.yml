@@ -1,0 +1,12 @@
+---
+ansible_user: vagrant
+
+timezone: "Europe/Madrid"
+ntp_servers:
+  - "0.pool.ntp.org"
+  - "1.pool.ntp.org"
+
+kubernetes_version: "1.34"
+contanier_runtime: "containerd"
+pod_network_cidr: "10.244.0.0/16"
+

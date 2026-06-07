@@ -1,0 +1,5 @@
+---
+node_role: "control-plane"
+apiserver_advertise_address: "192.168.56.10"
+cni_plugin: "calico"
+untaint_control_plane: true
