@@ -1,0 +1,11 @@
+---
+# Path system config files.
+# Fixed paths in Ubuntu/Debian, they shouldn't be changed by users.
+common_modules_load_path: "/etc/modules-load.d/k8s.conf"
+common_sysctl_config_path: "/etc/sysctl.d/99-k8s.conf"
+
+# Default time sync service for Ubuntu/Debian. Can be overridden if using a different OS or time sync solution.
+common_time_sync_service: "systemd-timesyncd"
+
+# Marker to identify Ansible-managed sections in config files, useful for idempotent updates.
+common_ansible_managed_marker: "# ANSIBLE MANAGED BLOCK"
