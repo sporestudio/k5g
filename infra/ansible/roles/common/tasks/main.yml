@@ -1,2 +1,8 @@
 ---
-- ansible.builtin.import_tasks: packages.yml
+- name: Install base system packages
+  ansible.builtin.import_tasks: packages.yml
+  tags: [common, packages]
+
+- name: Establish system hostname
+  ansible.builtin.import_tasks: hostname.yml
+  tags: [common, hostname]
