@@ -15,7 +15,7 @@
 
 - name: Install base packages
   ansible.builtin.apt:
-    name: {{ common_base_packages }}
+    name: "{{ common_base_packages }}"
     state: present
 
 - name: Check if reboot is needed
