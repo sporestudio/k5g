@@ -28,8 +28,8 @@
     msg: "WARNING: System reboot is required!"
   when: reboot_required_file.stat.exists
 
-- name: Reboot machine if neede
+- name: Reboot machine if needed
   ansible.builtin.reboot:
     msg: "Rebooting machine..."
-  when: reboot_required_file.stat.exits
+  when: reboot_required_file.stat.exists
   
