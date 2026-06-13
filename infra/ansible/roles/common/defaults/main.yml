@@ -18,6 +18,10 @@ common_base_packages:
   - lsb-release
   - apt-utils
 
+common_kernel_modules:
+  - overlay
+  - br_netfilter
+
 common_upgrade_system: true
 
 common_disble_swap: true
