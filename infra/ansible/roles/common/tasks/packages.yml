@@ -27,4 +27,9 @@
   ansible.builtin.debug:
     msg: "WARNING: System reboot is required!"
   when: reboot_required_file.stat.exists
+
+- name: Reboot machine if neede
+  ansible.builtin.reboot:
+    msg: "Rebooting machine..."
+  when: reboot_required_file.stat.exits
   
