@@ -13,6 +13,7 @@
     owner: root
     group: root
     mode: '0644'
+  notify: Reload systemd-timesyncd
   
 - name: Ensure systemd-timesyncd is active
   ansible.builtin.systemd:
