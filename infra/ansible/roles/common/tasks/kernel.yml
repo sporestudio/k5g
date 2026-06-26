@@ -1,0 +1,17 @@
+---
+- name: Load necessary kernel modules
+  community.general.modprobe:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_kernel_modules }}"
+
+- name: Make modules persistant
+  ansible.builtin.copy:
+    dest: "{{ common_modules_load_path }}"
+    content: |
+      {% for module in common_kernel_modules %}
+        {{ module }}
+      {% endfor %}
+    owner: root
+    group: root
+    mode: '0644'

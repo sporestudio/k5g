@@ -1,2 +1,24 @@
 ---
-- ansible.builtin.import_tasks: packages.yml
+- name: Install base system packages
+  ansible.builtin.import_tasks: packages.yml
+  tags: [common, packages]
+
+- name: Establish system hostname
+  ansible.builtin.import_tasks: hostname.yml
+  tags: [common, hostname]
+
+- name: Set timezone
+  ansible.builtin.import_tasks: time.yml
+  tags: [common, timezone]
+
+- name: Load kernel modules
+  ansible.builtin.import_tasks: kernel.yml
+  tags: [common, kernel, modules]
+
+- name: Apply sysctl parameters
+  ansible.builtin.import_tasks: sysctl.yml
+  tags: [common, systemctl]
+
+- name: Enable ufw with k8s rules
+  ansible.builtin.import_tasks: firewall.yml
+  tags: [common, firewall, ufw]

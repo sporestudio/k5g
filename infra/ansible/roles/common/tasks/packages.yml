@@ -15,7 +15,7 @@
 
 - name: Install base packages
   ansible.builtin.apt:
-    name: {{ common_base_packages }}
+    name: "{{ common_base_packages }}"
     state: present
 
 - name: Check if reboot is needed
@@ -26,5 +26,10 @@
 - name: Reboot warning
   ansible.builtin.debug:
     msg: "WARNING: System reboot is required!"
+  when: reboot_required_file.stat.exists
+
+- name: Reboot machine if needed
+  ansible.builtin.reboot:
+    msg: "Rebooting machine..."
   when: reboot_required_file.stat.exists
   

@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: "sporestudio"
+  description: "Common modules for k8s nodes"
+  license: "MIT"
+  min_ansible_version: "2.14"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - k8s
+    - common

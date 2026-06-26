@@ -1,0 +1,22 @@
+---
+- name: Configure timezone
+  ansible.builtin.timezone:
+    name: "{{ timezone }}"
+
+- name: Configure NTP servers
+  ansible.builtin.copy:
+    dest: /etc/systemd/timesyncd.conf
+    content: |
+      [Time]
+      NTP={{ ntp_servers | join(' ') }}
+      FallbackNTP=ntp.ubuntu.com
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload systemd-timesyncd
+  
+- name: Ensure systemd-timesyncd is active
+  ansible.builtin.systemd:
+    name: "{{ common_time_sync_service }}"
+    state: started
+    enabled: true

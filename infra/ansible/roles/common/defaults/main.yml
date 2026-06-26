@@ -18,6 +18,13 @@ common_base_packages:
   - lsb-release
   - apt-utils
 
+# Kernel modules necessaries for k8s + containerd.
+# - Overlay -> filesystem overlay which k8s uses to apply image layers.
+# - br_netfilter -> Allows iptables to see traffic crossing Linux bridges.
+common_kernel_modules:
+  - overlay
+  - br_netfilter
+
 common_upgrade_system: true
 
 common_disble_swap: true

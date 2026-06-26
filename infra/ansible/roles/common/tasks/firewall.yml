@@ -1,0 +1,42 @@
+---
+- name: Check if ufw is installed
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: Deactivate ufw (lab single-node mode)
+  community.general.ufw:
+    state: disabled
+  when: common_firewall_state == "disabled"
+
+- name: Activate ufw with k8s rules
+  block:
+    - name: Allow SSH 
+      community.general.ufw:
+        rule: allow
+        port: ssh
+        proto: tcp
+
+    - name: Allow k8s API servers
+      community.general.ufw:
+        rule: allow
+        port: '6443'
+        proto: tcp
+
+    - name: Allow kubelet API
+      community.general.ufw:
+        rule: allow
+        port: '10250'
+        proto: tcp
+
+    - name: Allow NodePort Range
+      community.general.ufw:
+        rule: allow
+        port: '30000:32767'
+        proto: udp
+
+    - name: Enable ufw
+      community.general.ufw:
+        state: enabled
+        policy: deny
+  when: common_firewall_state == "enabled"
