@@ -1,3 +1,7 @@
 .*
 !.gitignore
 infra/*.log
+!.pre-commit-config.yaml
+!.yamllint.yml
+!.ansible-lint.yml
+!.python-version
