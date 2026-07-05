@@ -1,6 +1,6 @@
 ---
 - name: Configure timezone
-  ansible.builtin.timezone:
+  community.general.timezone:
     name: "{{ timezone }}"
 
 - name: Configure NTP servers
@@ -14,7 +14,7 @@
     group: root
     mode: '0644'
   notify: Reload systemd-timesyncd
-  
+
 - name: Ensure systemd-timesyncd is active
   ansible.builtin.systemd:
     name: "{{ common_time_sync_service }}"
