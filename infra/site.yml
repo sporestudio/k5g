@@ -1,7 +1,7 @@
 ---
 - name: Install k8s cluster
   become: true
-  hosts: 
+  hosts:
     - k8s-master
   roles:
     - common

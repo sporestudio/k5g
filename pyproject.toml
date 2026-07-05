@@ -1,0 +1,25 @@
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry]
+name = "k5g"
+version = "1.0.0"
+description = "Simple IMS 5G Telco infrastructure running in a k8s cluster."
+authors = ["Jorge Rodríguez Castillo <jrodcas@proton.me>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/sporestudio/k5g"
+repository = "https://github.com/sporestudio/k5g"
+package-mode = false
+
+[tool.poetry.requires-plugins]
+poetry-dynamic-versioning = { version = ">=1.0.0,<2.0.0", extras = ["plugin"] }
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.14"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.3"
+ansible-lint = "^26.6.0"
+yamllint = "^1.38.0"

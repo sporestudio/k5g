@@ -11,7 +11,7 @@
     autoremove: true
     autoclean: true
   when: common_upgrade_system | bool
-  register: apt_upgrade_result
+  register: common_apt_upgrade_result
 
 - name: Install base packages
   ansible.builtin.apt:
@@ -21,7 +21,7 @@
 - name: Check if reboot is needed
   ansible.builtin.stat:
     path: "/var/run/reboot-required"
-  register: reboot_required_file
+  register: common_reboot_required_file
 
 - name: Reboot warning
   ansible.builtin.debug:
@@ -32,4 +32,3 @@
   ansible.builtin.reboot:
     msg: "Rebooting machine..."
   when: reboot_required_file.stat.exists
-  

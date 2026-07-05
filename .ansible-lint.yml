@@ -1,0 +1,21 @@
+---
+profile: moderate
+
+exclude_paths:
+  - .cache/
+  - .github/
+  - .vagrant/
+  - docs/
+  - operator/
+  - ims/
+
+skip_list:
+  - yaml[line-length]
+
+warn_list:
+  - experimental
+  - role-name
+
+use_default_rules: true
+
+verbosity: 1
