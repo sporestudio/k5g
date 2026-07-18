@@ -1,4 +1,8 @@
 ---
+# ====================== #
+# Paths                  #
+# ====================== #
+
 # Path system config files.
 # Fixed paths in Ubuntu/Debian, they shouldn't be changed by users.
 common_modules_load_path: "/etc/modules-load.d/k8s.conf"

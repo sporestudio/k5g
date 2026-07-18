@@ -1,0 +1,52 @@
+---
+# ========================== #
+# Versions                   #
+# ========================== #
+
+# Containerd version to install.
+# Empty = lastest version available.
+# To pin: "1.7.22-1" (complete apt format with release sufix).
+containerd_version: ""
+
+# crictl version to pull from Github.
+# Must be compatible with the k8s version you'll use!
+containerd_crictl_version: "v1.34.0"
+
+# ========================== #
+# Runtime config             #
+# ========================== #
+
+# Cgroup driver, Must be 'systemd' to align with kubelet in Ubuntu.
+# Change this to "cgroups" breaks the cluster - change only if you
+# know what are you doing.
+containerd_systemd_cgroup: true
+
+# Image "pause" conatinerd uses how sandbox for each pod.
+# If it is not pinned, containerd will use a default version
+# which can be set as deprecated respect to k8s version.
+containerd_sandbox_image: "registry.k8s.io/pause:3.10"
+
+# Containerd logging level
+# Values: trace, debug, info, warn, error, fatal, panic
+containerd_log_level: "info"
+
+# ========================== #
+# Paths                      #
+# ========================== #
+
+# Containerd root directory (images, snapshots, metadata).
+containerd_root_dir: "/var/lib/containerd"
+
+# Containerd state directory (volatile runtime info)
+containerd_state_dir: "/run/containerd"
+
+# ========================== #
+# Behaviour flags            #
+# ========================== #
+
+# apt-mark hold to avoid automatic upgrades.
+containerd_pin_package: false
+
+# Force containerd restart at the end of the rol although there are no changes.
+# Useful when you're debugging. Normal use: false.
+containerd_force_restart: false
