@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: "Jorge Rodríguez Castillo"
+  description: "Install and configure runtime for k8s"
+  license: "MIT"
+  min_ansible_version: "2.14"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - kubernetes
+    - containerd
+    - cri
+
+dependencies:
+  - role: common
