@@ -1,0 +1,4 @@
+---
+- name: Install containerd docker repository
+  ansible.builtin.import_tasks: repo.yml
+  tags: [containerd, repository]

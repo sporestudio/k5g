@@ -1,0 +1,17 @@
+---
+- name: Configure Docker repository (DEB822)
+  ansible.builtin.deb822_repository:
+    name: docker
+    types: [deb]
+    uris: "https://download.docker.com/linux/ubuntu"
+    suites: ["{{ ansible_facts['distribution_release'] }}"]
+    components: [stable]
+    architecture: "{{ ansible_facts['architecture'] | regex_replace('^x86_64$', 'amd64') }}"
+    signed_by: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+  register: containerd_docker_repo
+
+- name: Upgrade apt cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: containerd_docker_repo.changed
