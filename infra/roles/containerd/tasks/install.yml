@@ -1,0 +1,30 @@
+---
+- name: Build package name with version
+  ansible.builtin.set_fact:
+    containerd_package_spec: >-
+      {{ containerd_package_name }}{% if containerd_version | length > 0 %}={{ containerd_version }}{% endif %}
+
+- name: Install containerd
+  ansible.builtin.apt:
+    name: "{{ containerd_package_spec }}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Containerd "hold" to avoid accidental upgrades
+  ansible.builtin.dpkg_selections:
+    name: "{{ containerd_package_name }}"
+    selection: hold
+  when: containerd_pin_package | bool
+
+- name: Ensure containerd directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /etc/containerd
+    - "{{ containerd_root_dir }}"
+    - /opt/cni/bin
